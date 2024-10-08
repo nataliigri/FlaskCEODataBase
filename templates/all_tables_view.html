@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Всі таблиці</title>
+</head>
+<body>
+    <h1>Всі таблиці</h1>
+    <ul>
+        {% for table in tables %}
+            <li>{{ table }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="/">Назад</a>
+</body>
+</html>

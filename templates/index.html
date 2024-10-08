@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>База даних</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Управління Табличними Базами Даних</h1>
+    
+    <form action="/create_db" method="POST">
+        <input type="text" name="db_name" placeholder="Назва бази даних" required>
+        <button type="submit">Створити базу даних</button>
+    </form>
+
+    <h4>Створити таблицю</h4>
+    <form action="/create_table" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <button type="submit">Створити таблицю</button>
+    </form>
+
+    <h4>Додати поле до таблиці</h4>
+    <form action="/add_field" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <input type="text" name="field_name" placeholder="Назва поля" required>
+        <input type="text" name="field_type" placeholder="Тип поля" required>
+        <button type="submit">Додати поле</button>
+    </form>
+
+    <h4>Редагувати поле таблиці</h4>
+    <form action="/edit_field" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <input type="text" name="old_field_name" placeholder="Стара назва поля" required>
+        <input type="text" name="new_field_name" placeholder="Нова назва поля" required>
+        <input type="text" name="new_field_type" placeholder="Новий тип поля" required>
+        <button type="submit">Редагувати поле</button>
+    </form>
+
+    <h4>Видалити поле з таблиці</h4>
+    <form action="/remove_field" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <input type="text" name="field_name" placeholder="Назва поля" required>
+        <button type="submit">Видалити поле</button>
+    </form>
+
+    <h4>Видалити таблицю</h4>
+    <form action="/remove_table" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <button type="submit">Видалити таблицю</button>
+    </form>
+
+    <h4>Переглянути всі таблиці</h4>
+    <form action="/view_all_tables" method="GET">
+        <button type="submit">Переглянути таблиці</button>
+    </form>
+
+    <h4>Переглянути таблицю</h4>
+    <form action="/view_table" method="POST">
+        <input type="text" name="table_name" placeholder="Назва таблиці" required>
+        <button type="submit">Переглянути таблицю</button>
+    </form>
+
+    <h4>Сполучити таблиці за спільним полем</h4>
+    <form action="/join_tables" method="POST">
+        <input type="text" name="table1_name" placeholder="Назва першої таблиці" required>
+        <input type="text" name="table2_name" placeholder="Назва другої таблиці" required>
+        <input type="text" name="common_field_name" placeholder="Спільне поле" required>
+        <button type="submit">Сполучити таблиці</button>
+    </form>
+
+    <h4>Зберегти базу даних</h4>
+    <form action="/save_db" method="POST">
+        <button type="submit">Зберегти</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
